@@ -350,7 +350,7 @@ class _SlotEditScreenState extends State<SlotEditScreen> {
           Row(children: [
             Expanded(
               child: DropdownButtonFormField<String>(
-                value: app.sounds.any((s) => s.id == _sound) ? _sound : null,
+                initialValue: app.sounds.any((s) => s.id == _sound) ? _sound : null,
                 decoration: const InputDecoration(labelText: 'صوت الجرس', border: OutlineInputBorder()),
                 items: [for (final s in app.sounds) DropdownMenuItem(value: s.id, child: Text(s.name))],
                 onChanged: (v) => setState(() => _sound = v),
