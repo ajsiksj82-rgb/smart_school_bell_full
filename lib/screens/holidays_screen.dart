@@ -180,7 +180,7 @@ class _HolidayDialogState extends State<_HolidayDialog> {
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             TextField(controller: _title, decoration: const InputDecoration(labelText: 'اسم الإجازة')),
             DropdownButtonFormField<String>(
-              value: _kind,
+              initialValue: _kind,
               decoration: const InputDecoration(labelText: 'النوع'),
               items: [for (final e in holidayKindLabels.entries) DropdownMenuItem(value: e.key, child: Text(e.value))],
               onChanged: (v) => setState(() => _kind = v ?? _kind),
@@ -209,7 +209,7 @@ class _HolidayDialogState extends State<_HolidayDialog> {
               },
             ),
             DropdownButtonFormField<int?>(
-              value: _buildingId,
+              initialValue: _buildingId,
               decoration: const InputDecoration(labelText: 'النطاق'),
               items: [
                 const DropdownMenuItem<int?>(value: null, child: Text('كل المدرسة')),
