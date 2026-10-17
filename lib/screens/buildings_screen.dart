@@ -51,7 +51,7 @@ class _BuildingsScreenState extends State<BuildingsScreen> {
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: app.sounds.any((s) => s.id == sound) ? sound : null,
+                    initialValue: app.sounds.any((s) => s.id == sound) ? sound : null,
                     decoration: const InputDecoration(labelText: 'الصوت الافتراضي'),
                     items: [for (final s in app.sounds) DropdownMenuItem(value: s.id, child: Text(s.name))],
                     onChanged: (v) => setS(() => sound = v),
