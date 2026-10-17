@@ -30,7 +30,7 @@ Future<void> showManualBellSheet(BuildContext context) async {
               Text(app.selected!.title, style: Theme.of(ctx).textTheme.bodyMedium),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
-                value: app.sounds.any((s) => s.id == soundId) ? soundId : null,
+                initialValue: app.sounds.any((s) => s.id == soundId) ? soundId : null,
                 decoration: const InputDecoration(labelText: 'الصوت', border: OutlineInputBorder()),
                 items: [for (final s in app.sounds) DropdownMenuItem(value: s.id, child: Text(s.name))],
                 onChanged: (v) => setS(() => soundId = v ?? soundId),
