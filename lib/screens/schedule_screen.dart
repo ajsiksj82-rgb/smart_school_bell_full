@@ -323,7 +323,7 @@ class _EventDialogState extends State<_EventDialog> {
         content: SingleChildScrollView(
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             DropdownButtonFormField<BellEventType>(
-              value: _type,
+              initialValue: _type,
               decoration: const InputDecoration(labelText: 'نوع الحدث'),
               items: [for (final t in BellEventType.values) DropdownMenuItem(value: t, child: Text(bellTypeLabel(t)))],
               onChanged: (v) => setState(() => _type = v ?? _type),
@@ -350,7 +350,7 @@ class _EventDialogState extends State<_EventDialog> {
             Row(children: [
               Expanded(
                 child: DropdownButtonFormField<String>(
-                  value: app.sounds.any((s) => s.id == _sound) ? _sound : null,
+                  initialValue: app.sounds.any((s) => s.id == _sound) ? _sound : null,
                   decoration: const InputDecoration(labelText: 'الصوت'),
                   items: [for (final s in app.sounds) DropdownMenuItem(value: s.id, child: Text(s.name))],
                   onChanged: (v) => setState(() => _sound = v),
