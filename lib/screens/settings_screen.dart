@@ -57,6 +57,18 @@ class _SettingsScreenState extends State<SettingsScreen> with WidgetsBindingObse
     );
   }
 
+  Widget _usageTile(AppState app, String value, String title, String sub) {
+    final selected = app.audioUsage == value;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(selected ? Icons.radio_button_checked : Icons.radio_button_off,
+          color: selected ? Theme.of(context).colorScheme.primary : null),
+      title: Text(title),
+      subtitle: Text(sub),
+      onTap: () => app.setAudioUsage(value),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final app = AppScope.of(context);
@@ -100,22 +112,10 @@ class _SettingsScreenState extends State<SettingsScreen> with WidgetsBindingObse
               padding: const EdgeInsets.all(14),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('قناة الصوت', style: Theme.of(context).textTheme.titleMedium),
-                RadioListTile<String>(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('مستوى صوت المنبّه'),
-                  subtitle: const Text('يرنّ حتى في الوضع الصامت، ويتحكم به مستوى صوت المنبّه في الهاتف.'),
-                  value: 'alarm',
-                  groupValue: app.audioUsage,
-                  onChanged: (v) => app.setAudioUsage(v!),
-                ),
-                RadioListTile<String>(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('مستوى صوت الوسائط'),
-                  subtitle: const Text('يتبع مستوى صوت الوسائط (مناسب غالبًا لأنظمة المكبرات عبر AUX).'),
-                  value: 'media',
-                  groupValue: app.audioUsage,
-                  onChanged: (v) => app.setAudioUsage(v!),
-                ),
+                _usageTile(app, 'alarm', 'مستوى صوت المنبّه',
+                    'يرنّ حتى في الوضع الصامت، ويتحكم به مستوى صوت المنبّه في الهاتف.'),
+                _usageTile(app, 'media', 'مستوى صوت الوسائط',
+                    'يتبع مستوى صوت الوسائط (مناسب غالبًا لأنظمة المكبرات عبر AUX).'),
               ]),
             ),
           ),
